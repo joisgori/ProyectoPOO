@@ -16,7 +16,7 @@ import javax.swing.JFrame;
  */
 public class Ventana extends JFrame implements WindowListener{
 
-    public Ventana(String title) throws HeadlessException {
+    public Ventana(String title){
         super(title);
         setSize(500, 500);
         addWindowListener(this);
