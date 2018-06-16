@@ -10,18 +10,20 @@ import javax.swing.JPanel;
  *
  * @author Josué González <00034715@uca.edu.sv>;
  */
-public class Panel extends JPanel{
+public class PanelFG extends JPanel{
     ArrayList v;
     //Constructor vacío de esta clase...
-    public Panel(ArrayList asd) { //Siendo esta variable solo un parámetro que servirá para enviar todas las figuras que vamos a "dibujar"...
+    public PanelFG(ArrayList asd) { //Siendo esta variable solo un parámetro que servirá para enviar todas las figuras que vamos a "dibujar"...
         //Puede tener objetos de distintos tipos...
         this.v = asd; 
     }
     
     public void paint(Graphics g){ //Método que nos permitirá dibujar
         Dibujable dib;
-        for(int i = 0; i<v.size(); i++){
+        for(int i = 0; i<v.size(); i++){ //Crea un objeto de tipo dibujable y va dibujando a medida que recorre el arreglo de objetos
+            
             dib = (Dibujable)v.get(i); //Casteamos esto al tipo dibujable...
+            dib.Dibujar(g);
         }
     }
     
