@@ -65,8 +65,8 @@ public class Nave extends Coordenada{
     public void mover(Coordenada NvaCor){
         
         setVertice((this.Suma(NvaCor)), 1);
-        setVertice((this.Suma(NvaCor)), 2);
-        setVertice((this.Suma(NvaCor)), 3);
+        setVertice((this.cor1.Suma(NvaCor)), 2);
+        setVertice((this.cor2.Suma(NvaCor)), 3);
         
         
     }
