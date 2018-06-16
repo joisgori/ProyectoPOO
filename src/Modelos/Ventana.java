@@ -5,6 +5,7 @@
  */
 package Modelos;
 
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -20,6 +21,8 @@ public class Ventana extends JFrame implements WindowListener{
         super(title);
         setSize(500, 500);
         addWindowListener(this);
+        setBackground(Color.yellow); //O todo en mayúscula o minúscula...
+        
         
     }
 
