@@ -33,12 +33,12 @@ public class Rectangulo extends Coordenada {
     
     public float getLado(int lado){
         if(lado == 1){
-            return.this.lado1;
+            return this.lado1;
         }
         if(lado == 2){
-            return.this.lado2;
+            return this.lado2;
         }
-        if(lado != 0 && lado!=1){
+        if(lado != 1 && lado!=2){
             return 0;
         }
         return 0;

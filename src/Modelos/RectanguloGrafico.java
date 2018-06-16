@@ -20,10 +20,12 @@ public class RectanguloGrafico extends Rectangulo implements Dibujable {
 
     }
 
-    public RectanguloGrafico(Color uncolor, float x, float y, Coordenada cor) {
+    public RectanguloGrafico(Color color, float x, float y, Coordenada cor) {
         super(x, y, cor);
-        this.color = uncolor;
+        this.color = color;
     }
+    
+    
 
     @Override
     public void Dibujar(Graphics dw) {
