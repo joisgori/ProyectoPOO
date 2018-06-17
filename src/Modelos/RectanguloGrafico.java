@@ -32,6 +32,10 @@ public class RectanguloGrafico extends Rectangulo implements Dibujable {
         dw.setColor(color);
         dw.fillRect((int) this.getX(), (int) this.getY(), (int) this.getLado(1), (int) this.getLado(2));
     }
-
+    //Moviento de los asteroides
+    public void Ciclo(){
+        float x = this.getY();
+        this.setY(x = x+20);
+    }
 }
 

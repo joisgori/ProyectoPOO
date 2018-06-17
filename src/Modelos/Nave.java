@@ -5,6 +5,8 @@
  */
 package Modelos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author aacm12
@@ -13,7 +15,7 @@ public class Nave extends Coordenada{
     
     public Coordenada cor1 = new Coordenada();//toma la coordenada de la izquierda
     public Coordenada cor2 = new Coordenada();//toma la coordenada de la derecha
-    
+    ArrayList balas = new ArrayList(); // Asignarle un arreglo para la nave pueda disparar un objeto
     //;a coordenada q heredamos va a tomar la punta de la nave
     
     public Nave(){
@@ -70,5 +72,6 @@ public class Nave extends Coordenada{
         
         
     }
+    
     
 }

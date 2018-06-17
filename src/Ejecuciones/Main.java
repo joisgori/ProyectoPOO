@@ -12,6 +12,10 @@ import java.util.ArrayList;
  * @author Josué González <00034715@uca.edu.sv>;
  */
 public class Main {
+    //Para la creación de la ubicación de asteroides
+    public static int Aleatorio(int Max, int Min){
+        return (int)(Math.random()*(Max-Min));
+    }
 
     public static void main(String[] args) {
         Ventana nuestraventana = new Ventana("Juego de naves"); //Objeto de tipo ventana
@@ -32,14 +36,47 @@ public class Main {
         RectanguloGrafico rectangulo = new RectanguloGrafico(Color.pink, 80 , 80,cor1 );
         CirculoGrafico circulo = new CirculoGrafico(cor2,50,Color.BLACK);
         
-        ArregloDeObjetos.add(rectangulo);
-        ArregloDeObjetos.add(circulo);
+        //ArregloDeObjetos.add(rectangulo);
+        //ArregloDeObjetos.add(circulo);
+        
+        // Creación de asteroides
+        int rango = Aleatorio(800, 500);
+        //Coordenada de la salida de nuestro asteroide
+        Coordenada Salida = new Coordenada(rango,0);
+        RectanguloGrafico Asteroide = new RectanguloGrafico(Color.red, 25, 25, Salida);
+        
+        int rango1 = Aleatorio(800, 500);
+        Coordenada Salida1 = new Coordenada(rango,0);
+        RectanguloGrafico Asteroide1 = new RectanguloGrafico(Color.red, 25, 25, Salida1);
+        
+        int rango2 = Aleatorio(800, 500);
+        Coordenada Salida2 = new Coordenada(rango,0);
+        RectanguloGrafico Asteroide2 = new RectanguloGrafico(Color.red, 25, 25, Salida2);
+        
+        int rango3 = Aleatorio(800, 500);
+        Coordenada Salida3 = new Coordenada(rango,0);
+        RectanguloGrafico Asteroide3 = new RectanguloGrafico(Color.red, 25, 25, Salida3);
+        
+        int rango4 = Aleatorio(800, 500);
+        Coordenada Salida4 = new Coordenada(rango,0);
+        RectanguloGrafico Asteroide4 = new RectanguloGrafico(Color.red, 25, 25, Salida4);
+        
+        ArregloDeObjetos.add(Asteroide);
+        ArregloDeObjetos.add(Asteroide1);
+        ArregloDeObjetos.add(Asteroide2);
+        ArregloDeObjetos.add(Asteroide3);
+        ArregloDeObjetos.add(Asteroide4);
+                
         ArregloDeObjetos.add(nave);
         PanelFG nuestroPanel = new PanelFG(ArregloDeObjetos);
+        
+        nuestroPanel.refNave(nave); //No se utilizara la nave de la misma forma en como la pintamos.
+        nuestroPanel.refAst(Asteroide, Asteroide1, Asteroide2, Asteroide3, Asteroide4);//Se podran modificar su posición
         
         nuestraventana.add(nuestroPanel);
         nuestraventana.setSize(800, 600);
         nuestraventana.setVisible(true);
+        nuestroPanel.iniciar();
         
     }
     
