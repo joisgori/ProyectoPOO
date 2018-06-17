@@ -15,18 +15,21 @@ import javax.swing.JPanel;
  */
 public class PanelFG extends JPanel implements KeyListener{ //La librería modificará los objetos en nuestro Panel 
     ArrayList v;
+    ArrayList ast = new ArrayList();
     NaveGrafico nave;//Creación de la nave gráfica.
     //Definicendo coordenadas que utilizaremos.
     Coordenada movimientoIzq = new Coordenada(-25,0); //Eje x.
     Coordenada movimientoDer = new Coordenada(25,0); //Eje x
     Coordenada movimientoNulo = new Coordenada(0,0); //Movimienot nulo lo hará cuando soltemos la tecla.
     //Creación de los asteroides.
-    RectanguloGrafico Asteroide;
-    RectanguloGrafico Asteroide1;
-    RectanguloGrafico Asteroide2;
-    RectanguloGrafico Asteroide3;
-    RectanguloGrafico Asteroide4;
+    //RectanguloGrafico Asteroide;
+    //RectanguloGrafico Asteroide1;
+    //RectanguloGrafico Asteroide2;
+    //RectanguloGrafico Asteroide3;
+    //RectanguloGrafico Asteroide4;
     
+    //Contador de Asteroides el cúal servirá para la implementación de niveles
+    int ContadorAsteroides = 5;
     
     //Constructor vacío de esta clase...
     public PanelFG(ArrayList vectordeO) { //Siendo esta variable solo un parámetro que servirá para enviar todas las figuras que vamos a "dibujar"... El panel recibirá un vector de objetos
@@ -96,12 +99,52 @@ public class PanelFG extends JPanel implements KeyListener{ //La librería modif
         this.nave = n;
     }
     public void refAst(RectanguloGrafico a,RectanguloGrafico b,RectanguloGrafico c,RectanguloGrafico d,RectanguloGrafico e){
-        Asteroide = a;
-        Asteroide1 = b;
-        Asteroide2 = c;
-        Asteroide3 = d;
-        Asteroide4 = e;
+        ast.add(a);
+        ast.add(b);
+        ast.add(c);
+        ast.add(d);
+        ast.add(e);
+        
+        //Asteroide = a;
+        //Asteroide1 = b;
+        //Asteroide2 = c;
+        //Asteroide3 = d;
+        //Asteroide4 = e;
     }
+    public void Colision(){
+        //Cuando las coordenadas de los dos objetos sean iguales entonces chocan
+        for(int i=0; i<nave.balas.size(); i++){
+            CirculoGrafico bala =(CirculoGrafico) nave.balas.get(i);
+            for(int j=0; j<ast.size();j++){ //Cada bala se comparará con los asteroides en un instante
+                RectanguloGrafico aste = (RectanguloGrafico) ast.get(j); 
+                
+                //coordenadas
+                Coordenada Corbala = new Coordenada(bala.getX(),bala.getY()); //Coordenada por el centro
+                
+                Coordenada Derecha = new Coordenada(aste.getX()+30,aste.getY());
+                Coordenada Izquierda = new Coordenada(aste.getX()-15,aste.getY());
+                Coordenada medio= new Coordenada(aste.getX(),aste.getY());
+                
+                //Comparación de asteroides con las balas si esto se cumple entonces se produce una colisión
+                if(Corbala.getX()>Izquierda.getX() && Corbala.getX()<Derecha.getX() && Corbala.getY()<medio.getY()){
+                    // una vez que choquen se pinten y no se vean
+                    aste.pintar(Color.WHITE);
+                    bala.pintar(Color.WHITE);
+                    //settear un lugar en la pantalla donde no se vea lo blanco, por que cuando un objeto pase sobre él, esté se observará
+                    bala.setY(-100);
+                    aste.setY(-100);
+                    //Borrando
+                    nave.balas.remove(bala);
+                    ast.remove(aste);
+                    ContadorAsteroides = ContadorAsteroides-1;
+                    
+                    
+                }
+                
+            }
+        }
+    }
+    
     //Se´ra nuestro star del juego
     public void iniciar(){
         while(true){
@@ -110,11 +153,40 @@ public class PanelFG extends JPanel implements KeyListener{ //La librería modif
                     nave.Ciclo();
                 }
                 //Aignación de moviento para los asteroides
-                Asteroide.Ciclo();
-                Asteroide1.Ciclo();
-                Asteroide2.Ciclo();
-                Asteroide3.Ciclo();
-                Asteroide4.Ciclo();
+                //Asteroide.Ciclo();
+                //Asteroide1.Ciclo();
+                //Asteroide2.Ciclo();
+                //Asteroide3.Ciclo();
+                //Asteroide4.Ciclo();
+                
+                //Recorrer la cantidad de asteroides que tiene el arreglo
+                for(int i=0; i<ast.size();i++){
+                    RectanguloGrafico rect = (RectanguloGrafico) ast.get(i);
+                    rect.Ciclo();
+                    
+                    if(rect.getY()>525){
+                        int rango = Aleatorio(800,50); //Nueva posición a ocupar.
+                        rect.setY(0); //El asteroide comenzará desde su partida inicial
+                        rect.setX(rango);
+                    }
+                }
+                //Cuando el contador de asteroides sea menos a lo indicado entonces seguir creando asteroides
+                if(ContadorAsteroides < 5){ // se ha producido una colision
+                    int rango = Aleatorio(800,50);
+                    Coordenada Inicio = new Coordenada(rango,0);// se ubicará al arriba al principio del eje x
+                    RectanguloGrafico nuevo = new RectanguloGrafico(Color.RED,25,25,Inicio);
+                    //agregando al arreglo de asteroides
+                    ast.add(nuevo);
+                    //agregando al arreglo de objetos del paint
+                    v.add(nuevo);
+                    //dandole un ciclo
+                    nuevo.Ciclo();
+                    ContadorAsteroides = ContadorAsteroides +1;
+                    
+                }
+                
+                Colision();
+                /*
                 //Posicionando los asteroides en en 0 
                 if(Asteroide.getY()>525){
                    int rango = Aleatorio(800,50); //Nueva posición a ocupar.
@@ -140,7 +212,7 @@ public class PanelFG extends JPanel implements KeyListener{ //La librería modif
                    int rango = Aleatorio(800,50); //Nueva posición a ocupar.
                    Asteroide4.setY(0); //El asteroide comenzará desde su partida inicial
                    Asteroide4.setX(rango);
-                }
+                }*/
                 
                 //Asteroide4.setY(200); //Enviados por referencias, si se le quiere cambiar ahora se podrá
                 Thread.sleep(50); //Hilo de ejecución cada 50 milisegundos

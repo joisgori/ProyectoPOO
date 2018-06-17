@@ -35,7 +35,11 @@ public class RectanguloGrafico extends Rectangulo implements Dibujable {
     //Moviento de los asteroides
     public void Ciclo(){
         float x = this.getY();
-        this.setY(x = x+20);
+        this.setY(x = x+10);
+    }
+    //Pintando objeto
+    public void pintar(Color a){
+        this.color=a;
     }
 }
 

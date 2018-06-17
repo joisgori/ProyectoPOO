@@ -21,6 +21,8 @@ public class Main {
         Ventana nuestraventana = new Ventana("Juego de naves"); //Objeto de tipo ventana
         //Creando el arreglo de nuestro panel:
         ArrayList ArregloDeObjetos = new ArrayList();
+        //Mejor manipulación de asteroides
+        
         //Crearemos el planel...
         Coordenada cor1 = new Coordenada(250,250);
         Coordenada cor2 = new Coordenada(500,290);
