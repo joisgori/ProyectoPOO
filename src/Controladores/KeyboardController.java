@@ -28,5 +28,26 @@ public class KeyboardController {
             return keyStatus[keyCode];
         }
     }
+    
+    public void resetController()
+    {
+        keyStatus = new boolean[256]; 
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent ke) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+        keyStatus[ke.getKeyCode()] = true; 
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        keyStatus[ke.getKeyCode()] = false; 
+    }
+    
 
 }
