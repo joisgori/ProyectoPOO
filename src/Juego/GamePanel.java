@@ -597,7 +597,7 @@ public class GamePanel extends JPanel {
 
         // Register KeyboardController as KeyListener
         controller = new KeyboardController();
-        this.addKeyListener(controller);
+        this.addKeyListener(controladores);
 
         // Call setupGame to initialize fields
         this.setupGame();
