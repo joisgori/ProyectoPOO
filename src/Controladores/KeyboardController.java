@@ -21,11 +21,15 @@ public class KeyboardController {
         keyStatus = new boolean[256];
     }
 
-    public boolean getKeyStatus(int keyCode) {
-        if (keyCode < 0 || keyCode > 255) {
-            return false;
-        } else {
-            return keyStatus[keyCode];
+    public boolean getKeyStatus(int keyCode)
+    {
+        if(keyCode < 0 || keyCode > 255)
+        {
+            return false; 
+        }
+        else
+        {
+            return keyStatus[keyCode]; 
         }
     }
     
@@ -48,6 +52,7 @@ public class KeyboardController {
     public void keyReleased(KeyEvent ke) {
         keyStatus[ke.getKeyCode()] = false; 
     }
+    
     
 
 }
