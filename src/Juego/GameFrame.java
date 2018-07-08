@@ -37,7 +37,7 @@ public class GameFrame extends JFrame{
         game.start();  
     }
     
-    public static void main(String[] args) 
+    public void main() 
     {
          java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

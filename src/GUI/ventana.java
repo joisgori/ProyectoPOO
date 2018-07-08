@@ -1,0 +1,101 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package GUI;
+
+import Juego.GameFrame;
+import Juego.GamePanel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel; //Libreía para utilizar el texto.
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ *
+ * @author josue
+ */
+public class ventana extends JPanel {
+    
+    public int WIDTH = 300, widthTF = 150, widthB = 100;
+    public int HEIGHT = 400, heightTF = 30, heightB = 40;
+    public JButton iniciar, puntaje, tienda, creditos;
+    public JLabel titulo;
+    //public JPanel h;
+    
+    public ventana() {
+        setLayout(null);
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        
+        agregarLabels();
+        agregarButones();
+        action();
+        add(iniciar);
+        add(creditos);
+        add(puntaje);
+        add(tienda);
+        add(titulo);
+        
+        
+    }
+    private void agregarLabels(){
+        titulo = new JLabel("<html><font size = '15'>SPACE INVADERS</font></hmtl>");
+        titulo.setBounds(new Rectangle(5, 5, 300, 50));
+    }
+    private void agregarButones(){
+        iniciar = new JButton("iniciar");
+        iniciar.setBounds(new Rectangle(100, 80, widthB, heightB));
+        
+        puntaje = new JButton("puntaje");
+        puntaje.setBounds(new Rectangle(100, 130, widthB, heightB));
+        
+        tienda = new JButton("tienda");
+        tienda.setBounds(new Rectangle(100, 180, widthB, heightB));
+        
+        creditos = new JButton("creditos");
+        creditos.setBounds(new Rectangle(100, 230, widthB, heightB));
+    }
+    private void action(){
+        iniciar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                GameFrame play = new GameFrame();
+                play.main();
+                
+            }
+        });
+        
+        tienda.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                try {
+                    tienda t = new  tienda();
+                    t.main();
+                } catch (IOException ex) {
+                    Logger.getLogger(ventana.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        });
+    }
+    
+    public void main(){
+        JFrame ventana = new JFrame("Space Invaders");
+        ventana.setContentPane(new ventana());
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setResizable(false);
+        ventana.pack();
+        ventana.setVisible(true);
+    }
+    
+}
