@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
  *
  * @author Josué González <00034715@uca.edu.sv>
  */
-public class KeyboardController {
+public class KeyboardController implements KeyListener {
 
     //Arreglo de Booleano que nos va servir para verificar el estado de las teclas
     private boolean[] keyStatus;

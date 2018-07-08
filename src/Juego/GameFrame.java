@@ -18,7 +18,7 @@ public class GameFrame extends JFrame{
     public GameFrame()
     {
         // Título de la ventana 
-        super("Space Intruders");
+        super("Spaceship and aliens");
         
         // Asegurarse del que programa exista cuando se aprete el botón cerrar
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
