@@ -55,17 +55,18 @@ public class NuevoUsuario extends JPanel {
                 
                 usuario reg = new usuario();
                 boolean bandera = false;
-                boolean check;
+                boolean check = false;
+                /*
                 try {
                     check = reg.checkExiste(user.getText());
                 } catch (IOException ex) {
                     System.out.println("Algo salio mal");
-                }
+                }*/
                   
                 if(confirmar.getText().equals(pass.getText())){
                     bandera = true;
                     
-                    if(check = true){
+                    if(check == true){
                         System.out.println(user.getText());
                         String mensaje = "El usuario ingresado ya Existe";
                         JOptionPane.showMessageDialog(null, mensaje, "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
@@ -81,8 +82,8 @@ public class NuevoUsuario extends JPanel {
                     
                 }
                 
-                
-                if((bandera == true) && (check = false)){
+                check = false;
+                if((bandera == true) && (check == false)){
                     //System.out.println("TRUE");
                     String mensaje = "Registrado Exitosamente";
                     reg.nuevo(user.getText(),pass.getText(), confirmar.getText());

@@ -46,8 +46,8 @@ public class Prueba {
     //ENTRADA
     public static void main(String[] args) throws IOException {
         EntradaUsuario x = new EntradaUsuario();
-        tienda t = new tienda();
-        ventana v = new ventana();
+        //tienda t = new tienda();
+        //ventana v = new ventana();
         //v.main();
         //t.main();
         x.main();

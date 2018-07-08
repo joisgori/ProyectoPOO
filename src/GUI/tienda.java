@@ -12,7 +12,10 @@ import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel; //Libreía para utilizar el texto.
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import usuario.Dato;
 import usuario.usuario;
 
 
@@ -64,15 +68,27 @@ public class tienda extends JPanel {
     
     private void agregarLabels() throws IOException{
         usuario dat = new usuario();
-        Login log = new Login();
+        //Login log = new Login();
          
         titulo = new JLabel("TIENDA");
         titulo.setForeground(Color.WHITE);
         titulo.setFont(new Font("Serif", Font.PLAIN, 50));
 
         titulo.setBounds(new Rectangle(10, 3, 200, heightB));
+        String d;
+        BufferedReader br = null;
+        try{
+            br = new BufferedReader(new FileReader("Cookie.txt"));
+            d = br.readLine();
+           
+        }finally{
+            if(br!=null){
+                br.close();
+            }
+        }
         
-        String dato = dat.valores(log.User());
+        
+        String dato = dat.valores(d);
         String [] splitting = dato.split(",");
         String tUser = splitting[0];
         int tMoney = Integer.parseInt(splitting[3]); 

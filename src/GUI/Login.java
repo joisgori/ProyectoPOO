@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,10 +56,13 @@ public class Login extends JPanel {
                 boolean bandera;
                 usuario ing = new usuario();
                 String mensaje1 = "Ingresando...";
-                String mensaje2 = "Contraseña o Usuairo Incorrecto";
+                String mensaje2 = "Contraseña o Usuario Incorrecto";
                 try {
+                    //System.out.println(user.getText());
                     bandera = ing.login(user.getText(), pass.getText());
                     if(bandera == true){
+                        Login log = new Login();
+                        log.User(user.getText());
                         ventana ven = new ventana();
                         ven.main();
                     }else{
@@ -71,9 +76,20 @@ public class Login extends JPanel {
             }
         });
     }
-    public String User(){
-        String U = user.getText();
-        return U;
+    public void User(String user){
+        try{
+            FileWriter fw = new FileWriter("Cookie.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            bw.write(user);
+            bw.newLine();
+            
+            bw.close();
+            
+        }catch(IOException e){
+            System.out.println("ERROR, no se pudo agregar a file");
+            e.printStackTrace();
+        } 
     }
     
     public void main(){

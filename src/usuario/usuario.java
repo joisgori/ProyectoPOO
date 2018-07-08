@@ -61,6 +61,7 @@ public class usuario {
     
     public String valores(String user) throws IOException{
         //String user = "AACM12";
+        //System.out.println("usuario: "+user);
         String dato;
         ArrayList<Dato> datos = Read();
         int i =0;
@@ -75,6 +76,7 @@ public class usuario {
         }
         
         dato = datos.get(index).toString();
+        //System.out.println(dato);
         return dato;
         
     }   
