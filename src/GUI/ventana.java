@@ -49,10 +49,7 @@ public class ventana extends JPanel {
         add(tienda);
         add(titulo);
         add(user);
-        
-        
-        
-        
+
     }
     private void agregarLabels() throws FileNotFoundException, IOException{
         titulo = new JLabel("<html><font size = '15'>SPACE INVADERS</font></hmtl>");
@@ -93,6 +90,19 @@ public class ventana extends JPanel {
             public void actionPerformed(ActionEvent arg0) {
                 GameFrame play = new GameFrame();
                 play.main();
+                
+            }
+        });
+        
+        puntaje.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                try {
+                    Puntos punt = new Puntos();
+                    punt.main();
+                } catch (IOException ex) {
+                    Logger.getLogger(ventana.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });
