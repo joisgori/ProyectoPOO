@@ -35,7 +35,6 @@ public class Puntos extends JPanel {
     private JLabel [] labels, scores;
     public int WIDTH = 300, widthTF = 150, widthB = 100;
     public int HEIGHT = 400, heightTF = 30, heightB = 40;
-    public JButton back;
     public JLabel titulo, userXscore;
     
     //public JPanel h;
@@ -47,7 +46,7 @@ public class Puntos extends JPanel {
         agregarLabels();
         agregarButones();
         action();
-        add(back);
+
         add(titulo);
         add(userXscore);
         
@@ -104,20 +103,12 @@ public class Puntos extends JPanel {
         
     }
     private void agregarButones(){
-        back = new JButton("Back");
-        back.setBounds(new Rectangle(100, 350, widthB, 35));
+        
         
     }
     private void action(){
         
         
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                    
-                
-            }
-        });
     }
     
     public void main() throws IOException{
