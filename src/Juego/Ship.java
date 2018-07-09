@@ -31,7 +31,6 @@ public class Ship extends ControlledGameObject{
         bonusEnemy.paintIcon(null, g, this.getXPosition(), this.getYPosition());
     }
 
-    // Draw ships for life counter
     public void lifeDraw(Graphics g) {
 
         lifeCounterShip.paintIcon(null, g, this.getXPosition(), this.getYPosition());
@@ -44,7 +43,6 @@ public class Ship extends ControlledGameObject{
 
     }
 
-    // Gets the hit box for all ship objects
     @Override
     public Rectangle getBounds() {
         Rectangle shipHitbox = new Rectangle(this.getXPosition(), this.getYPosition(), 50, 50);
