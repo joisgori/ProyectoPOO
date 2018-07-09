@@ -104,15 +104,10 @@ public class GamePanel extends JPanel {
     private AudioStream damageSoundAudio;
     private InputStream damageSoundInput;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-// Used in the Enemy class to help with the draw method for the boss
+
     public static int getBossHealth() {
         return bossHealth;
     }
-    
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // SETUP GAME
 
     public final void setupGame() {
 
@@ -160,15 +155,14 @@ public class GamePanel extends JPanel {
         }
     }
     
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// PAINT
+
     @Override
     public void paint(Graphics g) {
 
-        // Set imagen de fondo
+
         background.paintIcon(null, g, 0, -150);
 
-        // makes a string that says "+100" on enemy hit
+
         if (bullet != null) {
             if (hitMarker) {
                 g.setColor(Color.WHITE);
@@ -204,7 +198,7 @@ public class GamePanel extends JPanel {
                 newBulletCanFire = false;
             }
         }
-        // Only attempts to draw bullet after key press
+
         if (bullet != null) {
             bullet.draw(g);
         }
@@ -239,7 +233,7 @@ public class GamePanel extends JPanel {
                 }
             }
         }
-        // ibuja los disparos
+        // Dibuja los disparos
         for (int index = 0; index < beamList.size(); index++) {
             beamList.get(index).draw(g);
         }
@@ -281,8 +275,6 @@ public class GamePanel extends JPanel {
         }
     }
     
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// UPDATE GAME STATE
     
     public void updateGameState(int frameNumber) {
 
@@ -353,7 +345,7 @@ public class GamePanel extends JPanel {
                     if (level != 3 && level != 6 && level != 9 && level != 12) {
                         score += 100;
                         hitMarker = true;
-                        markerX = enemyList.get(index).getXPosition(); // Gets positions that the "+ 100" spawns off of
+                        markerX = enemyList.get(index).getXPosition(); 
                         markerY = enemyList.get(index).getYPosition();
                         enemyList.remove(index);
 
@@ -361,7 +353,7 @@ public class GamePanel extends JPanel {
                     //atualiza el puntaje en nivels de JEFE
                     if (level == 3 || level == 6 || level == 9 || level == 12) {
                         hitMarker = true;
-                        markerX = enemyList.get(index).getXPosition(); // Gets positions that the "- 1" spawns off of
+                        markerX = enemyList.get(index).getXPosition(); 
                         markerY = enemyList.get(index).getYPosition() + 165;
                         bossHealth -= 1;
                         if (bossHealth == 0) {
@@ -459,7 +451,7 @@ public class GamePanel extends JPanel {
                         // Fuerte
                         if (shieldList.get(j).getColor() == Color.RED) {
                             shieldList.get(j).setColor(Color.ORANGE);
-                            AudioPlayer.player.start(shieldSoundAudio); // Plays sound if shield takes damage
+                            AudioPlayer.player.start(shieldSoundAudio);
                             beamList.remove(index);
                         // Bueno
                         } else if (shieldList.get(j).getColor() == Color.ORANGE) {
@@ -585,9 +577,7 @@ public class GamePanel extends JPanel {
         }
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// GAME PANEL    
-    
+
     public GamePanel() {
         // Set el tamaño del panel
         this.setSize(gameWidth, gameHeight);
@@ -604,11 +594,7 @@ public class GamePanel extends JPanel {
         this.requestFocusInWindow();
     }
 
-    /**
-     * Method to start the Timer that drives the animation for the game. It is
-     * not necessary for you to modify this code unless you need to in order to
-     * add some functionality.
-     */
+
     public void start() {
         // Set un nuevo timer que se repita cada 20 millisegundos (50 FPS)
         gameTimer = new Timer(1000 / framesPerSecond, new ActionListener() {
