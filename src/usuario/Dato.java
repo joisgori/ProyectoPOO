@@ -9,7 +9,7 @@ package usuario;
  *
  * @author aacm12
  */
-public class Dato {
+public class Dato{
     private String user;
     private String pass;
     private int high;
@@ -23,6 +23,11 @@ public class Dato {
         this.pass = pass;
         this.high = high;
         this.money = money;
+    }
+    public Dato(String user, int high) {
+        this.user = user;
+        this.high = high;
+
     }
 
     public String getUser() {
@@ -57,11 +62,12 @@ public class Dato {
     public void setMoney(int money) {
         this.money = money;
     }
-
+    
     @Override
     public String toString() {
         return this.user + "," + this.pass + "," + Integer.toString(this.high) + ","+ Integer.toString(this.money);
     }
+
     
     
 }
