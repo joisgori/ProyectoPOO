@@ -11,22 +11,28 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
+import usuario.Dato;
+import usuario.usuario;
 
 /**
  *
@@ -114,8 +120,8 @@ public class GamePanel extends JPanel {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // SETUP GAME
 
-    public final void setupGame() {
-
+    public final void setupGame() throws FileNotFoundException, IOException {
+        
         // Sets enemies for normal levels
         if (level != 3 && level != 6 && level != 9 && level != 12) {
             // Six rows
@@ -284,19 +290,24 @@ public class GamePanel extends JPanel {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // UPDATE GAME STATE
     
-    public void updateGameState(int frameNumber) {
+    public void updateGameState(int frameNumber) throws IOException {
 
         // para q el usuario se pueda mover de izquierda a derecha
         playerShip.move();
 
         // actualiza el puntaje mas alto 
         try {
+            
             Scanner fileScan = new Scanner(f);
             while (fileScan.hasNextInt()) {
                 String nextLine = fileScan.nextLine();
                 Scanner lineScan = new Scanner(nextLine);
                 highScore = lineScan.nextInt();
             }
+            
+            
+            
+            
         } catch (FileNotFoundException e) {
         }
         // para resetear el puntaje mas alto
@@ -317,7 +328,7 @@ public class GamePanel extends JPanel {
         try {
             if (score > highScore) {
                 String scoreString = Integer.toString(score);
-                PrintWriter pw = new PrintWriter(new FileOutputStream(f, false));
+                PrintWriter pw = new PrintWriter(new FileOutputStream(f, true));
                 pw.write(scoreString);
                 pw.close();
             }
@@ -588,7 +599,7 @@ public class GamePanel extends JPanel {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GAME PANEL    
     
-    public GamePanel() {
+    public GamePanel() throws IOException {
         // Set el tamaño del panel
         this.setSize(gameWidth, gameHeight);
         this.setPreferredSize(new Dimension(gameWidth, gameHeight));
@@ -618,9 +629,13 @@ public class GamePanel extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // actualiza el estado del juego y pinta la pantalla
-                updateGameState(frameNumber++);
-                repaint();
+                try {
+                    // actualiza el estado del juego y pinta la pantalla
+                    updateGameState(frameNumber++);
+                    repaint();
+                } catch (IOException ex) {
+                    Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         Timer gameTimerHitMarker = new Timer(1000, new ActionListener() {

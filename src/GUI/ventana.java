@@ -32,7 +32,7 @@ public class ventana extends JPanel {
     
     public int WIDTH = 300, widthTF = 150, widthB = 100;
     public int HEIGHT = 400, heightTF = 30, heightB = 40;
-    public JButton iniciar, puntaje, tienda, creditos;
+    public JButton iniciar, puntaje, tienda, salir;
     public JLabel titulo, user;
     //public JPanel h;
     
@@ -44,7 +44,7 @@ public class ventana extends JPanel {
         agregarButones();
         action();
         add(iniciar);
-        add(creditos);
+        add(salir);
         add(puntaje);
         add(tienda);
         add(titulo);
@@ -81,15 +81,19 @@ public class ventana extends JPanel {
         tienda = new JButton("tienda");
         tienda.setBounds(new Rectangle(100, 180, widthB, heightB));
         
-        creditos = new JButton("creditos");
-        creditos.setBounds(new Rectangle(100, 230, widthB, heightB));
+        salir = new JButton("Salir");
+        salir.setBounds(new Rectangle(100, 230, widthB, heightB));
     }
     private void action(){
         iniciar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                GameFrame play = new GameFrame();
-                play.main();
+                try {
+                    GameFrame play = new GameFrame();
+                    play.main();
+                } catch (IOException ex) {
+                    Logger.getLogger(ventana.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });
@@ -116,6 +120,14 @@ public class ventana extends JPanel {
                 } catch (IOException ex) {
                     Logger.getLogger(ventana.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+            }
+        });
+        
+        salir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.exit(0);
                 
             }
         });

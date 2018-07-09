@@ -84,13 +84,17 @@ public class NuevoUsuario extends JPanel {
                 
                 check = false;
                 if((bandera == true) && (check == false)){
-                    //System.out.println("TRUE");
-                    String mensaje = "Registrado Exitosamente";
-                    reg.nuevo(user.getText(),pass.getText(), confirmar.getText());
-                    JOptionPane.showMessageDialog(null, mensaje, "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-                    
-                    ventana ven = new ventana();
-                    ven.main();
+                    try {
+                        //System.out.println("TRUE");
+                        String mensaje = "Registrado Exitosamente";
+                        reg.nuevo(user.getText(),pass.getText(), confirmar.getText());
+                        JOptionPane.showMessageDialog(null, mensaje, "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+                        
+                        ventana ven = new ventana();
+                        ven.main();
+                    } catch (IOException ex) {
+                        Logger.getLogger(NuevoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 
                 

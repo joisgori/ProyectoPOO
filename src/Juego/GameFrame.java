@@ -6,6 +6,9 @@
 package Juego;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -15,13 +18,13 @@ import javax.swing.JFrame;
 public class GameFrame extends JFrame{
     private GamePanel game;
     
-    public GameFrame()
+    public GameFrame() throws IOException
     {
         // Título de la ventana 
         super("Spaceship and aliens");
         
         // Asegurarse del que programa exista cuando se aprete el botón cerrar
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         
         // Creando una instancia de la clase Game y encendiendo el doble buffer para asegurar la animacion suave 
         game = new GamePanel();
@@ -42,7 +45,11 @@ public class GameFrame extends JFrame{
          java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GameFrame().setVisible(true);
+                try {
+                    new GameFrame().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
