@@ -46,6 +46,7 @@ public class tienda extends JPanel {
         agregarImagenes();
         agregarButtones();
         agregarLabels();
+        accionesBuy();
         add(dinero);
         add(usuario);
         add(titulo);
@@ -126,6 +127,7 @@ public class tienda extends JPanel {
         for (int i=0;i<num;i++){
             buy[i] = new JButton("comprar");
             buy[i].setBounds(new Rectangle(400, (215+(i*160)), widthB, heightB));
+            
             add(buy[i]);
         }
     }
@@ -141,11 +143,38 @@ public class tienda extends JPanel {
             
             labels[i].setBounds(10,(110+(i*155)),150,150);
             labels[i].setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.red));
+            
             add(labels[i]);
         }
     }
     
     private void accionesBuy(){
+        buy[0].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                din = din - precio1;
+                dinero.setText("<html>creditos: <font color='red'>"+Integer.toString(din)+"</font></html>");
+                
+            }
+        });
+        
+        buy[1].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                din = din - precio2;
+                dinero.setText("<html>creditos: <font color='red'>"+Integer.toString(din)+"</font></html>");
+                
+            }
+        });
+        
+        buy[2].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                din = din - precio3;
+                dinero.setText("<html>creditos: <font color='red'>"+Integer.toString(din)+"</font></html>");
+                
+            }
+        });
         
     }
     

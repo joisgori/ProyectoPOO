@@ -15,6 +15,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -23,17 +25,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import usuario.Dato;
 
 /**
  *
  * @author aacm12
  */
 public class Puntos extends JPanel {
-    private JLabel [] labels;
+    private JLabel [] labels, scores;
     public int WIDTH = 300, widthTF = 150, widthB = 100;
     public int HEIGHT = 400, heightTF = 30, heightB = 40;
     public JButton back;
     public JLabel titulo, userXscore;
+    
     //public JPanel h;
     
     public Puntos() throws IOException {
@@ -54,31 +58,46 @@ public class Puntos extends JPanel {
     private void agregarLabels() throws FileNotFoundException, IOException{
         titulo = new JLabel("<html><font size = '15'>High Scores</font></hmtl>");
         titulo.setBounds(new Rectangle(5, 5, 300, 50));
+        //
         
-        String d;
+        String d="";
         BufferedReader br = null;
+        Dato dato = new Dato();
+        ArrayList<Dato> datos = new ArrayList<>();
         try{
-            br = new BufferedReader(new FileReader("Cookie.txt"));
-            d = br.readLine();
-           
+            br = new BufferedReader(new FileReader("Score.txt"));
+            while ((d= br.readLine())!= null){
+                
+                String [] splitting = d.split(",");
+                String tUser = splitting[0];
+                
+                int tHigh = Integer.parseInt(splitting[1]);
+                //System.out.println(tHigh);
+                datos.add(new Dato(tUser,tHigh));
+                
+            }
         }finally{
             if(br!=null){
                 br.close();
             }
         }
-        
+        //
         userXscore = new JLabel("Usuario                                          Score");
         userXscore.setBounds(10, 60, 300, heightB);
         
         
         int num = 10;
         labels = new JLabel[num];
+        scores = new JLabel[num];
         //Container container = getContentPane();
         
         for (int i=0; i < num; i++){
-            labels[i] = new JLabel((i+1)+". ");
-            labels[i].setBounds(10,(40+(i*20)),150,150);
+            scores[i] = new JLabel(Integer.toString(datos.get(i).getHigh()));
+            scores[i].setBounds(225,(40+(i*20)),100,150);
+            labels[i] = new JLabel((i+1)+". "+ datos.get(i).getUser());
+            labels[i].setBounds(10,(40+(i*20)),100,150);
             add(labels[i]);
+            add(scores[i]);
         }
         
         
