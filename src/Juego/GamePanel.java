@@ -135,8 +135,8 @@ public class GamePanel extends JPanel {
         }
         // Gives directions on level 1
         if (level == 1) {
-            JOptionPane.showMessageDialog(null, "Bienvenidos!\n\nInstrucciones:\n\n- Use las fleachas izquierda/derecha para moverse\n- ocupe space para disparar\n- los enemigos se vuelven mas rapidos cada nivel"
-                    + "\n- hay un JEFE cada 3 niveles\n- una nave que da puntos extra saldra esporadicamente\n- disparele para ganar los puntos!\n- Press R to reset high score\n- All pixel art is original\n- PLAY WITH SOUND\n\nHAVE FUN!");
+            JOptionPane.showMessageDialog(null, "Bienvenidos!\n\nInstrucciones:\n\n- Use las flechas izquierda/derecha para moverse\n- ocupe space para disparar\n- los enemigos se vuelven mas rapidos cada nivel"
+                    + "\n- hay un JEFE cada 3 niveles\n- una nave que da puntos extra saldrá esporádicamente\n- disparele para ganar los puntos!\n- Presione R para reiniciar el puntaje\n- ACTIVAR EL SONIDO\n\n¡Desde el equipo JAR de POO, que lo disfrute!");
         }
         // Resetea todos los movimientos del controlador
         controller.resetController();
